@@ -42,6 +42,9 @@ class HoroscopeFragment : Fragment() {
 
     private fun initRecyclerView() {
         horoscopeAdapter = HoroscopeAdapter(onItemSelected = {
+            // Este codigo dispara cuando se clickea un elemento en pantalla.
+            // Esa seleccion se asigna en el ViewHolder, para ese momento ya tenemos HoroscopeInfo
+            // EN la variable it.
             Toast.makeText(context, getString(it.name), Toast.LENGTH_LONG).show()
         })
 
