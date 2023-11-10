@@ -9,9 +9,12 @@ class HoroscopeViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     private val binding = ItemHoroscopeBinding.bind(view)
 
-    fun render(horoscopeInfo: HoroscopeInfo){
+    fun render(horoscopeInfo: HoroscopeInfo, onItemSelected: (HoroscopeInfo) -> Unit){
+
         val context = binding.tvHoroscope.context // Puedo sacar el contexto de la vista a la que binding tenga acceso
         binding.ivHoroscope.setImageResource(horoscopeInfo.img)
         binding.tvHoroscope.text = context.getString(horoscopeInfo.name) // Name es una referencia a la posicion de string en el archivo string.xml
+
+        binding.parent.setOnClickListener { onItemSelected(horoscopeInfo) }
     }
 }
