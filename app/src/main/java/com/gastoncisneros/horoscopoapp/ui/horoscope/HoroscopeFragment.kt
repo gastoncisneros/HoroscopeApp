@@ -29,6 +29,14 @@ class HoroscopeFragment : Fragment() {
     private var _binding: FragmentHoroscopeBinding? = null
     private val binding get() = _binding!! // !! es no sera nulo
 
+    override fun onCreateView( // Crea la vista del Fragment
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View {
+        // Inflate the layout for this fragment
+        _binding = FragmentHoroscopeBinding.inflate(layoutInflater, container, false)
+        return binding.root
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -63,14 +71,5 @@ class HoroscopeFragment : Fragment() {
                 }
             }
         }
-    }
-
-    override fun onCreateView( // Crea la vista del Fragment
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        // Inflate the layout for this fragment
-        _binding = FragmentHoroscopeBinding.inflate(layoutInflater, container, false)
-        return binding.root
     }
 }
