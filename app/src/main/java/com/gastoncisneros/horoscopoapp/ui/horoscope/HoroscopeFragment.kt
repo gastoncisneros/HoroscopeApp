@@ -10,10 +10,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.gastoncisneros.horoscopoapp.R
+import com.gastoncisneros.horoscopoapp.data.providers.enums.HoroscopeType
 import com.gastoncisneros.horoscopoapp.databinding.FragmentHoroscopeBinding
+import com.gastoncisneros.horoscopoapp.domain.model.HoroscopeInfo
+import com.gastoncisneros.horoscopoapp.domain.model.HoroscopeInfo.*
 import com.gastoncisneros.horoscopoapp.ui.horoscope.recyclerView.HoroscopeAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -53,7 +57,23 @@ class HoroscopeFragment : Fragment() {
             // Este codigo dispara cuando se clickea un elemento en pantalla.
             // Esa seleccion se asigna en el ViewHolder, para ese momento ya tenemos HoroscopeInfo
             // EN la variable it.
-            Toast.makeText(context, getString(it.name), Toast.LENGTH_LONG).show()
+            val type = when(it){
+                Aquarius -> HoroscopeType.Aquarius
+                Aries -> HoroscopeType.Aries
+                Cancer -> HoroscopeType.Cancer
+                Capricorn -> HoroscopeType.Capricorn
+                Gemini -> HoroscopeType.Gemini
+                Leo -> HoroscopeType.Leo
+                Libra -> HoroscopeType.Libra
+                Pisces -> HoroscopeType.Pisces
+                Sagittarius -> HoroscopeType.Sagittarius
+                Scorpio -> HoroscopeType.Scorpio
+                Taurus -> HoroscopeType.Taurus
+                Virgo -> HoroscopeType.Virgo
+            }
+            findNavController().navigate(
+                HoroscopeFragmentDirections.actionHoroscopeFragmentToHoroscopeDetailActivity(type)
+            )
         })
 
         binding.rvHoroscope.apply {
